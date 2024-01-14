@@ -41,7 +41,7 @@ class AppDynamicsJob(unittest.TestCase):
         wd.find_element_by_name("group_footer").send_keys("tst")
         wd.find_element_by_name("submit").click()
         wd.find_element_by_link_text("groups").click()
-        wd.find_element_by_link_text("logout").click()
+        wd.find_element_by_link_text("Logout").click()
     
     def is_element_present(self, how, what):
         try: self.wd.find_element(by=how, value=what)
@@ -55,9 +55,6 @@ class AppDynamicsJob(unittest.TestCase):
     
 
     
-    def tearDown(self):
-        # To know more about the difference between verify and assert,
-        # visit https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#validating-results
 
 
 if __name__ == "__main__":
