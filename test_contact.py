@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
+from Contact import Contact
 
 class AppDynamicsJob(unittest.TestCase):
     def setUp(self):
@@ -15,11 +16,11 @@ class AppDynamicsJob(unittest.TestCase):
         self.wd.implicitly_wait(30)
         
     
-    def test_app_dynamics_job(self):
+    def test_add_contact(self):
         wd = self.wd
         self.open_home_page(wd)
-        self.login(wd)
-        self.add_new_contact(wd)
+        self.login(wd, "secret", "admin")
+        self.add_new_contact(wd, Contact(contact_name="Andrew", contact_surname="Suvorov"))
         self.logout(wd)
 
     def open_home_page(self, wd):
@@ -30,27 +31,27 @@ class AppDynamicsJob(unittest.TestCase):
         # logout
         wd.find_element_by_link_text("Logout").click()
 
-    def add_new_contact(self, wd):
+    def add_new_contact(self, wd, contact):
         # add new contact
         wd.find_element_by_link_text("add new").click()
         wd.get("http://localhost/addressbook/addressbook/edit.php")
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys("Andrew")
+        wd.find_element_by_name("firstname").send_keys("%s" % contact.contact_name)
         wd.find_element_by_name("middlename").click()
         wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys("Suvorov")
+        wd.find_element_by_name("middlename").send_keys("%s" % contact.contact_surname)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()
 
-    def login(self, wd):
+    def login(self, wd, password, username):
         # login
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_name("user").send_keys("%s" % username)
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
+        wd.find_element_by_name("pass").send_keys("%s" % password)
         wd.find_element_by_id("LoginForm").submit()
 
     def is_element_present(self, how, what):
