@@ -34,7 +34,7 @@ class AppDynamicsJob(unittest.TestCase):
     def test_login_negative(self):
         wd = self.wd
         self.open_home_page(wd)
-        self.login(wd, "X1", "X1")
+        self.login(wd, "X", "X")
         self.logout(wd)
 
     def logout(self, wd):
