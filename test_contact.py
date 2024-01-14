@@ -22,6 +22,20 @@ class AppDynamicsJob(unittest.TestCase):
         self.login(wd, "secret", "admin")
         self.add_new_contact(wd, Contact(contact_name="Andrew", contact_surname="Suvorov"))
         self.logout(wd)
+    def test_add_empty_contact(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, "secret", "admin")
+        self.add_new_contact(wd, Contact(contact_name="", contact_surname=""))
+        self.logout(wd)
+
+    def test_add_contact_login_negative(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, "X", "X")
+        self.logout(wd)
+
+
 
     def open_home_page(self, wd):
         # open home page
