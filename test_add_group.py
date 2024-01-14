@@ -28,9 +28,14 @@ class AppDynamicsJob(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, "admin", "secret")
-        self.add_element_in_address_book(wd, Group(name="",header="",footer= ""))
+        self.add_element_in_address_book(wd, Group(name="", header="", footer= ""))
         self.logout(wd)
 
+    def test_login_negative(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, "X", "X")
+        self.logout(wd)
 
     def logout(self, wd):
         # logout
