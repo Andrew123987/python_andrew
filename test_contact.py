@@ -30,7 +30,6 @@ class AppDynamicsJob(unittest.TestCase):
         self.logout(wd)
 
 
-
     def open_home_page(self, wd):
         # open home page
         wd.get("http://localhost/addressbook/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=7")
