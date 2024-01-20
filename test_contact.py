@@ -18,27 +18,29 @@ class AppDynamicsJob(unittest.TestCase):
     
     def test_add_contact(self):
         wd = self.wd
-
-        self.login(wd, "secret", "admin")
-        self.add_new_contact(wd, Contact(contact_name="Andrew", contact_surname="Suvorov"))
-        self.logout(wd)
+        self.login("secret", "admin")
+        self.add_new_contact(Contact(contact_name="Andrew", contact_surname="Suvorov"))
+        self.logout()
     def test_add_empty_contact(self):
         wd = self.wd
-        self.login(wd, "secret", "admin")
-        self.add_new_contact(wd, Contact(contact_name="", contact_surname=""))
-        self.logout(wd)
+        self.login("secret", "admin")
+        self.add_new_contact(Contact(contact_name="", contact_surname=""))
+        self.logout()
 
 
-    def open_home_page(self, wd):
+    def open_home_page(self):
         # open home page
+        wd = self.wd
         wd.get("http://localhost/addressbook/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=7")
 
-    def logout(self, wd):
+    def logout(self):
+        wd = self.wd
         # logout
         wd.find_element_by_link_text("Logout").click()
 
-    def add_new_contact(self, wd, contact):
+    def add_new_contact(self, contact):
         # add new contact
+        wd = self.wd
         wd.find_element_by_link_text("add new").click()
         wd.get("http://localhost/addressbook/addressbook/edit.php")
         wd.find_element_by_name("firstname").click()
@@ -50,9 +52,10 @@ class AppDynamicsJob(unittest.TestCase):
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()
 
-    def login(self, wd, password, username):
+    def login(self, password, username):
         # login
-        self.open_home_page(wd)
+        wd = self.wd
+        self.open_home_page()
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("%s" % username)

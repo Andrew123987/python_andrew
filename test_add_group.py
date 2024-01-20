@@ -18,30 +18,29 @@ class AppDynamicsJob(unittest.TestCase):
 
     def test_add_group(self):
         wd = self.wd
-        self.open_home_page(wd)
-        self.login(wd, "admin", "secret")
-        self.add_element_in_address_book(wd, Group(name="tst Andrew", header="tst", footer="tst"))
-        self.logout(wd)
+        self.login("admin", "secret")
+        self.add_element_in_address_book(Group(name="tst Andrew", header="tst", footer="tst"))
+        self.logout()
 
 
     def test_add_empty_group(self):
         wd = self.wd
-        self.open_home_page(wd)
-        self.login(wd, "admin", "secret")
-        self.add_element_in_address_book(wd, Group(name="", header="", footer= ""))
-        self.logout(wd)
+        self.login("admin", "secret")
+        self.add_element_in_address_book(Group(name="", header="", footer= ""))
+        self.logout()
 
     def test_login_negative(self):
         wd = self.wd
-        self.open_home_page(wd)
-        self.login(wd, "X", "X")
-        self.logout(wd)
+        self.login("X", "X")
+        self.logout()
 
-    def logout(self, wd):
+    def logout(self):
+        wd = self.wd
         # logout
         wd.find_element_by_link_text("Logout").click()
 
-    def add_element_in_address_book(self, wd, group):
+    def add_element_in_address_book(self, group):
+        wd = self.wd
         wd.find_element_by_link_text("groups").click()
         wd.find_element_by_name("new").click()
         wd.find_element_by_name("group_name").click()
@@ -59,8 +58,10 @@ class AppDynamicsJob(unittest.TestCase):
         wd.find_element_by_name("submit").click()
         wd.find_element_by_link_text("groups").click()
 
-    def login(self, wd, username, password):
+    def login(self, username, password):
+        wd = self.wd
         # login
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("%s" % username)
