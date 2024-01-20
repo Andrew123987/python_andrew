@@ -18,13 +18,12 @@ class AppDynamicsJob(unittest.TestCase):
     
     def test_add_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
+
         self.login(wd, "secret", "admin")
         self.add_new_contact(wd, Contact(contact_name="Andrew", contact_surname="Suvorov"))
         self.logout(wd)
     def test_add_empty_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, "secret", "admin")
         self.add_new_contact(wd, Contact(contact_name="", contact_surname=""))
         self.logout(wd)
@@ -53,6 +52,7 @@ class AppDynamicsJob(unittest.TestCase):
 
     def login(self, wd, password, username):
         # login
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("%s" % username)
