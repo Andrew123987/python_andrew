@@ -11,16 +11,16 @@ def app(request):
     return fixture
 
 def test_add_group(app):
-        app.login("admin", "secret")
+        app.session.login("admin", "secret")
         app.add_element_in_address_book(Group(name="tst Andrew", header="tst", footer="tst"))
-        app.logout()
+        app.session.logout()
 
 def test_add_empty_group(app):
-        app.login("admin", "secret")
+        app.session.login("admin", "secret")
         app.add_element_in_address_book(Group(name="", header="", footer=""))
-        app.logout()
+        app.session.logout()
 
 def test_login_negative(app):
-        app.login("X", "X")
-        app.logout()
+        app.session.login("X", "X")
+        app.session.logout()
 

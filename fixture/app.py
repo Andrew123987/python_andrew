@@ -1,14 +1,11 @@
 from selenium import webdriver
+from fixture.session import Helper_sessions
 class App:
     def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
+        self.session = Helper_sessions(self)
 
-
-    def logout(self):
-        wd = self.wd
-        # logout
-        wd.find_element_by_link_text("Logout").click()
 
     def add_element_in_address_book(self, group):
         wd = self.wd
@@ -29,24 +26,12 @@ class App:
         wd.find_element_by_name("submit").click()
         wd.find_element_by_link_text("groups").click()
 
-    def login(self, username, password):
-        wd = self.wd
-        # login
-        self.open_home_page(wd)
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("%s" % username)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("%s" % password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
 
     def open_home_page(self, wd):
-        # open home page
+        wd = self.wd
         wd.get("http://localhost/addressbook/addressbook/")
 
     def add_new_contact(self, contact):
-        # add new contact
         wd = self.wd
         wd.find_element_by_link_text("add new").click()
         wd.get("http://localhost/addressbook/addressbook/edit.php")
