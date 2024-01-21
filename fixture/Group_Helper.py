@@ -23,3 +23,10 @@ class GroupHelper:
         wd.find_element_by_name("group_footer").send_keys("%s" % group.footer)
         wd.find_element_by_name("submit").click()
         wd.find_element_by_link_text("groups").click()
+
+    def Group_delete(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("groups").click()
+        wd.find_element_by_link_text("selected[]").click()
+        wd.find_element_by_link_text("delete").click()
+        wd.find_element_by_link_text("groups").click()
