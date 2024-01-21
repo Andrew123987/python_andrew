@@ -10,5 +10,4 @@ def test_add_contact_empty(app):
         app.session.logout()
 
 
-if __name__ == "__main__":
-    unittest.main()
+

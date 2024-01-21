@@ -27,6 +27,7 @@ class GroupHelper:
     def Group_delete(self):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
-        wd.find_element_by_link_text("selected[]").click()
-        wd.find_element_by_link_text("delete").click()
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_name("delete").click()
         wd.find_element_by_link_text("groups").click()
+
