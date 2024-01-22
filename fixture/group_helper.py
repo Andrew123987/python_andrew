@@ -5,7 +5,7 @@ class GroupHelper:
         wd = self.app.wd
         wd.get("http://localhost/addressbook/addressbook/")
 
-    def Group_create(self, group):
+    def group_create(self, group):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
         wd.find_element_by_name("new").click()
@@ -24,14 +24,14 @@ class GroupHelper:
         wd.find_element_by_name("submit").click()
         wd.find_element_by_link_text("groups").click()
 
-    def Group_delete(self):
+    def group_delete(self):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_name("delete").click()
         wd.find_element_by_link_text("groups").click()
 
-    def Group_update(self):
+    def group_update(self):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
         wd.find_element_by_name("selected[]").click()
@@ -45,7 +45,7 @@ class GroupHelper:
         wd.find_element_by_name("update").click()
         wd.find_element_by_link_text("groups").click()
 
-    def Group_delete_old(self):
+    def group_delete_old(self):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
         wd.find_element_by_xpath("//div[@id='content']/form/span[10]/input").click()

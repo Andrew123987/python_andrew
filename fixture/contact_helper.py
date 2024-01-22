@@ -3,7 +3,7 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def Contact_create(self, contact):
+    def contact_create(self, contact):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
         wd.get("http://localhost/addressbook/addressbook/edit.php")
@@ -16,7 +16,7 @@ class ContactHelper:
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()
 
-    def Contact_update(self):
+    def contact_update(self):
         wd = self.app.wd
         wd.get("http://localhost/addressbook/addressbook/")
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
@@ -28,7 +28,7 @@ class ContactHelper:
         wd.find_element_by_name("middlename").send_keys("123")
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def Contact_delete(self):
+    def contact_delete(self):
         wd = self.app.wd
         wd.get("http://localhost/addressbook/addressbook/")
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
