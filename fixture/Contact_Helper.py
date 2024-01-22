@@ -16,7 +16,7 @@ class ContactHelper:
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()
 
-    def Contact_update(self, contact):
+    def Contact_update(self):
         wd = self.app.wd
         wd.get("http://localhost/addressbook/addressbook/")
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
@@ -28,7 +28,7 @@ class ContactHelper:
         wd.find_element_by_name("middlename").send_keys("123")
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def Contact_delete(self, contact):
+    def Contact_delete(self):
         wd = self.app.wd
         wd.get("http://localhost/addressbook/addressbook/")
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
