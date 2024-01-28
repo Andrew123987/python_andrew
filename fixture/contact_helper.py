@@ -17,7 +17,7 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
         wd.get("http://localhost/addressbook/addressbook/edit.php")
-        ContactHelper.contact_input(self, contact)
+        self.contact_input(contact)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()
 
@@ -25,7 +25,7 @@ class ContactHelper:
         wd = self.app.wd
         wd.get("http://localhost/addressbook/addressbook/")
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        ContactHelper.contact_input(self, contact)
+        self.contact_input(contact)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
     def contact_delete(self):
