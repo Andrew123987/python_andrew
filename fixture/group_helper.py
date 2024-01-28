@@ -5,6 +5,10 @@ class GroupHelper:
         wd = self.app.wd
         wd.get("http://localhost/addressbook/addressbook/")
 
+    def open_group_page(self):
+        wd = self.app.wd
+        wd.get('http://localhost/addressbook/addressbook/group.php')
+
     def group_create(self, group):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
@@ -55,3 +59,8 @@ class GroupHelper:
         wd.find_element_by_name('edit').click()
         self.fill_group_form(new_group_data)
         wd.find_element_by_name('update').click()
+
+    def count(self):
+        wd = self.app.wd
+        self.open_group_page()
+        return len(wd.find_elements_by_name('selected[]'))

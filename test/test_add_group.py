@@ -1,5 +1,4 @@
 import pytest
-
 from model.group import Group
 
 

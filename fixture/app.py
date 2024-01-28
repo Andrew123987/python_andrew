@@ -36,7 +36,7 @@ class App:
         wd = self.wd
         wd.get("http://localhost/addressbook/addressbook/")
 
-    def group_page(self):
+    def open_group_page(self):
         wd = self.wd
         wd.get('http://localhost/addressbook/addressbook/group.php')
 
