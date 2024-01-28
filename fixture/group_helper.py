@@ -51,7 +51,7 @@ class GroupHelper:
     def group_delete_old(self):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
-        wd.find_element_by_xpath("//div[@id='content']/form/span[10]/input").click()
+        wd.find_element_by_xpath("//div[@id='content']/form/span[2]/input").click()
         self.select_first_group()
         wd.find_element_by_name("delete").click()
         wd.find_element_by_link_text("groups").click()
