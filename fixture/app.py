@@ -9,10 +9,6 @@ from fixture.helper_helper import HelperHelper
     #self.wd.options = webdriver.FirefoxOptions()
     #self.wd.options.add_argument('--headless')  # Включение headless режима
 
-
-
-
-
 class App:
     def __init__(self):
         ## self.wd = webdriver.Firefox()
@@ -38,8 +34,8 @@ class App:
 
     def open_group_page(self):
         wd = self.wd
-        wd.get('http://localhost/addressbook/addressbook/group.php')
-
+        if not (wd.current_url.endswith('/group.php') and len(wd.find_elements_by_name('new')) > 0):
+            wd.get('http://localhost/addressbook/addressbook/group.php')
 
     def stop(self):
         self.wd.quit()
