@@ -38,8 +38,6 @@ class GroupHelper:
         wd.find_element_by_name("delete").click()
         wd.find_element_by_link_text("groups").click()
 
-
-
     def group_delete_old(self):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
