@@ -19,7 +19,7 @@ class App:
         options = webdriver.FirefoxOptions()  ## Включение headless режима
         options.add_argument('--headless')  ## Включение headless режима
         self.wd = webdriver.Firefox(options=options) ## Включение headless режима
-        self.wd.implicitly_wait(30)
+        self.wd.implicitly_wait(10)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
