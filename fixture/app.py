@@ -36,6 +36,10 @@ class App:
         wd = self.wd
         wd.get("http://localhost/addressbook/addressbook/")
 
+    def group_page(self):
+        wd = self.wd
+        wd.get('http://localhost/addressbook/addressbook/group.php')
+
 
     def stop(self):
         self.wd.quit()

@@ -13,3 +13,4 @@ def test_add_empty_group(app):
 
 #def test_login_negative(app):
     #app.session.login(username="", password="")
+

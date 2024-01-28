@@ -34,19 +34,7 @@ class GroupHelper:
         wd.find_element_by_name("delete").click()
         wd.find_element_by_link_text("groups").click()
 
-    #def group_update(self):
-       #wd = self.app.wd
-       # wd.find_element_by_link_text("groups").click()
-        #self.select_first_group()
-       # wd.find_element_by_name("edit").click()
-       # wd.find_element_by_name("group_name").click()
-       # wd.find_element_by_name("group_name").clear()
-       # wd.find_element_by_name("group_name").send_keys("test")
-       # wd.find_element_by_name("group_header").click()
-       # wd.find_element_by_name("group_header").clear()
-       # wd.find_element_by_name("group_header").send_keys("test")
-       # wd.find_element_by_name("update").click()
-       # wd.find_element_by_link_text("groups").click()
+
 
     def group_delete_old(self):
         wd = self.app.wd
