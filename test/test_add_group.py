@@ -8,7 +8,9 @@ def test_add_group(app):
 def test_add_empty_group(app):
     app.group.group_create(Group(name="", header="", footer=""))
 
+##def test_login_negative(app):
+##    app.session.login(username="X", password="X")
 
-#def test_login_negative(app):
-    #app.session.login(username="", password="")
+
+
 
