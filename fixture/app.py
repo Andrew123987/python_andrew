@@ -10,17 +10,18 @@ class App:
         options.add_argument('--headless')  ## Включение headless режима
         self.wd = webdriver.Firefox(options=options) ## Включение headless режима
         self.wd.implicitly_wait(5)
+        self.wd.get("http://localhost/addressbook/addressbook/")
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
         self.helper = HelperHelper()
 
     def is_valid(self):
-            try:
-                self.wd.current_url
-                return True
-            except:
-                return False
+        try:
+            self.wd.current_url
+            return True
+        except:
+            return False
 
     def open_home_page(self):
         wd = self.wd
