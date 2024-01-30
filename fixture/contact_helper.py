@@ -23,14 +23,14 @@ class ContactHelper:
 
     def contact_update(self, contact):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/addressbook/")
+        self.app.open_home_page()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
         self.contact_input(contact)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
     def contact_delete(self):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/addressbook/")
+        self.app.open_home_page()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
         wd.find_element_by_xpath("//div[@id='content']/form[2]/input[2]").click()
 
@@ -38,3 +38,5 @@ class ContactHelper:
         wd = self.app.wd
         self.app.open_home_page()
         return len(wd.find_elements_by_xpath("//img[@alt='Edit']"))
+
+

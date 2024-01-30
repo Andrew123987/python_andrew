@@ -25,7 +25,8 @@ class App:
 
     def open_home_page(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/addressbook/")
+        if not (wd.current_url.endswith('/addressbook/') and len(wd.find_elements_by_class_name('fdTableSortTrigger')) > 0):
+            wd.get("http://localhost/addressbook/addressbook/")
 
     def open_group_page(self):
         wd = self.wd
