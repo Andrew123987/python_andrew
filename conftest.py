@@ -11,7 +11,7 @@ def app(request):
     else:
         if not fixture.is_valid():
             fixture = App()
-            app.open_home_page()
+            fixture.session.open_home_page()
     fixture.session.ensure_login("admin", "secret")
     return fixture
 
