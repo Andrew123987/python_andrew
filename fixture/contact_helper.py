@@ -42,7 +42,6 @@ class ContactHelper:
         return len(wd.find_elements_by_xpath("//img[@alt='Edit']"))
 
 
-
     def get_contact_list(self):
         wd = self.app.wd
         self.app.open_home_page()
@@ -50,5 +49,5 @@ class ContactHelper:
         for element in wd.find_elements_by_css_selector('td:nth-child(1)'):
             text = element.text
             id = element.find_element_by_name('selected[]').get_attribute('value')
-            contacts.append(Contact(contact_name="Andrew", contact_surname="Suvorov", id=id))
+            contacts.append(Contact(contact_name=text, contact_surname=text, id=id))
         return contacts
