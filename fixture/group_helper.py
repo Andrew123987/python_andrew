@@ -1,8 +1,10 @@
 from model.group import Group
 
+
 class GroupHelper:
     def __init__(self, app):
         self.app = app
+
     def open_home_page(self):
         wd = self.app.wd
         wd.get("http://localhost/addressbook/addressbook/")
@@ -25,7 +27,6 @@ class GroupHelper:
         self.type('group_header', group.header)
         self.type('group_footer', group.footer)
 
-
     def type(self, field_name, text):
         wd = self.app.wd
         if text is not None:
@@ -34,19 +35,26 @@ class GroupHelper:
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
 
-    def group_delete(self):
+    def group_delete_by_index(self, index):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
-        self.select_first_group()
+        self.select_group_by_index(index)
         wd.find_element_by_name("delete").click()
         wd.find_element_by_link_text("groups").click()
         self.group_cache = None
+
+    def group_delete_first(self):
+        self.group_delete_by_index(0)
 
     def select_first_group(self):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
-    def modify_first_group(self,new_group_data):
+    def select_group_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
+    def modify_first_group(self, new_group_data):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
         self.select_first_group()
@@ -55,11 +63,23 @@ class GroupHelper:
         wd.find_element_by_name('update').click()
         self.group_cache = None
 
+    def modify_group_by_index(self, index, new_group_data):
+        wd = self.app.wd
+        wd.find_element_by_link_text("groups").click()
+        self.select_group_by_index(index)
+        wd.find_element_by_name('edit').click()
+        self.fill_group_form(new_group_data)
+        wd.find_element_by_name('update').click()
+        self.group_cache = None
+
+
+
+
+
     def count(self):
         wd = self.app.wd
         self.open_group_page()
         return len(wd.find_elements_by_name('selected[]'))
-
 
     group_cache = None
 
