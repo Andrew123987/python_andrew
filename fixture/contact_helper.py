@@ -42,13 +42,16 @@ class ContactHelper:
         self.app.open_home_page()
         return len(wd.find_elements_by_xpath("//img[@alt='Edit']"))
 
+    contact_cache = None
+
     def get_contact_list(self):
-        wd = self.app.wd
-        self.app.open_home_page()
-        contacts = []
-        for element in wd.find_elements_by_xpath('//*[@id="maintable"]//tbody//tr[@name="entry"]'):
-            id = element.find_element_by_xpath('.//td[1]//input').get_attribute("value")
-            last_name = element.find_element_by_xpath('.//td[2]').text
-            first_name = element.find_element_by_xpath('.//td[3]').text
-            contacts.append(Contact(id=id, contact_name=first_name, contact_surname=last_name))
+        if self.contact_cache is None:
+            wd = self.app.wd
+            self.app.open_home_page()
+            contacts = []
+            for element in wd.find_elements_by_xpath('//*[@id="maintable"]//tbody//tr[@name="entry"]'):
+                id = element.find_element_by_xpath('.//td[1]//input').get_attribute("value")
+                last_name = element.find_element_by_xpath('.//td[2]').text
+                first_name = element.find_element_by_xpath('.//td[3]').text
+                contacts.append(Contact(id=id, contact_name=first_name, contact_surname=last_name))
         return contacts
