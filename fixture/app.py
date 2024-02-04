@@ -6,9 +6,10 @@ from fixture.helper_helper import HelperHelper
 
 class App:
     def __init__(self):
-        options = webdriver.FirefoxOptions()  ## Включение headless режима
-        options.add_argument('--headless')  ## Включение headless режима
-        self.wd = webdriver.Firefox(options=options) ## Включение headless режима
+        ##options = webdriver.FirefoxOptions()  ## Включение headless режима
+        ##options.add_argument('--headless')  ## Включение headless режима
+        ##self.wd = webdriver.Firefox(options=options) ## Включение headless режима
+        self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(5)
         self.wd.get("http://localhost/addressbook/addressbook/")
         self.session = SessionHelper(self)

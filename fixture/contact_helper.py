@@ -1,3 +1,5 @@
+import time
+
 from model.contact import Contact
 
 
@@ -30,12 +32,26 @@ class ContactHelper:
         self.contact_input(contact)
         wd.find_element_by_name("update").click()
 
-    def contact_delete(self):
+    def contact_update_by_index(self, index, contact):
         wd = self.app.wd
         self.app.open_home_page()
-        wd.find_element_by_xpath('//td[8]/a/img').click()
-        wd.find_element_by_xpath('//form[2]/input[2]').click()
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        self.contact_input(contact)
+        wd.find_element_by_name("update").click()
+
+    def contact_delete(self):
+        self.contact_delete_by_index(0)
+
+    def contact_delete_by_index(self, index):
+        wd = self.app.wd
         self.app.open_home_page()
+        self.select_contact_by_index(index)
+        wd.find_element_by_xpath('//div[2]/input').click()
+        self.app.open_home_page()
+
+    def select_contact_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
 
     def count_contact(self):
         wd = self.app.wd
