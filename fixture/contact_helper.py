@@ -64,10 +64,10 @@ class ContactHelper:
         if self.contact_cache is None:
             wd = self.app.wd
             self.app.open_home_page()
-            contacts = []
+            self.contact_cache = []
             for element in wd.find_elements_by_xpath('//*[@id="maintable"]//tbody//tr[@name="entry"]'):
                 id = element.find_element_by_xpath('.//td[1]//input').get_attribute("value")
                 last_name = element.find_element_by_xpath('.//td[2]').text
                 first_name = element.find_element_by_xpath('.//td[3]').text
-                contacts.append(Contact(id=id, contact_name=first_name, contact_surname=last_name))
-        return contacts
+                self.contact_cache.append(Contact(id=id, contact_name=first_name, contact_surname=last_name))
+        return list(self.contact_cache)
