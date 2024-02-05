@@ -38,7 +38,7 @@ class SessionHelper:
             return
         else:
             self.logout()
-        self.login(self, username, password)
+        self.login(username, password)
 
     def open_home_page(self):
         wd = self.app.wd
