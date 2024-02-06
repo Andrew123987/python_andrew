@@ -24,7 +24,6 @@ class ContactHelper:
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()
         self.app.open_home_page()
-        self.contact_cache = None
 
     def contact_update(self, contact):
         wd = self.app.wd
@@ -51,7 +50,6 @@ class ContactHelper:
         self.select_contact_by_index(index)
         wd.find_element_by_xpath('//div[2]/input').click()
         self.app.open_home_page()
-        self.contact_cache = None
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
