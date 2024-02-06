@@ -31,7 +31,6 @@ class ContactHelper:
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
         self.contact_input(contact)
         wd.find_element_by_name("update").click()
-        self.contact_cache = None
 
     def contact_update_by_index(self, index, contact):
         wd = self.app.wd
@@ -39,7 +38,6 @@ class ContactHelper:
         wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
         self.contact_input(contact)
         wd.find_element_by_name("update").click()
-        self.contact_cache = None
 
     def contact_delete(self):
         self.contact_delete_by_index(0)
