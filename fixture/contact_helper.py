@@ -11,10 +11,10 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys("%s" % contact.contact_name)
+        wd.find_element_by_name("firstname").send_keys("%s" % contact.firstname)
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys("%s" % contact.contact_surname)
+        wd.find_element_by_name("lastname").send_keys("%s" % contact.lastname)
 
     def contact_create(self, contact):
         wd = self.app.wd
@@ -79,17 +79,17 @@ class ContactHelper:
     def get_contact_info_from_edit_page(self, index, contact):
         wd = self.app.wd
         self.contact_update_by_index(index, contact)
-        contact_name = wd.find_element_by_name('firstname').get_attribute('value')
-        contact_surname = wd.find_element_by_name('lastname').get_attribute('value')
-        contact_address = wd.find_element_by_name('address').get_attribute('value')
-        contact_email_1 = wd.find_element_by_name('email').get_attribute('value')
-        contact_email_2 = wd.find_element_by_name('email2').get_attribute('value')
-        contact_email_3 = wd.find_element_by_name('email3').get_attribute('value')
-        contact_home_phone = wd.find_element_by_name('home').get_attribute('value')
-        contact_mobile_phone = wd.find_element_by_name('mobile').get_attribute('value')
-        contact_work_phone = wd.find_element_by_name('work').get_attribute('value')
-        contact_fax = wd.find_element_by_name('fax').get_attribute('value')
-        #return Contact(firstname=contact_name,lastname=lastname,id = id, address = address,
-        #               address=address, email=email, email2=email2, email3,
-        #               home=home, mobile=mobile, work=work, fax=fax   )
+        firstname = wd.find_element_by_name('firstname').get_attribute('value')
+        lastname = wd.find_element_by_name('lastname').get_attribute('value')
+        address = wd.find_element_by_name('address').get_attribute('value')
+        email = wd.find_element_by_name('email').get_attribute('value')
+        email2 = wd.find_element_by_name('email2').get_attribute('value')
+        email3 = wd.find_element_by_name('email3').get_attribute('value')
+        home = wd.find_element_by_name('home').get_attribute('value')
+        mobile = wd.find_element_by_name('mobile').get_attribute('value')
+        work = wd.find_element_by_name('work').get_attribute('value')
+        fax = wd.find_element_by_name('fax').get_attribute('value')
+        return Contact(firstname=firstname, lastname=lastname, id=id, address=address,
+                       email=email, email2=email2, email3=email3,
+                       home=home, mobile=mobile, work=work, fax=fax)
 
