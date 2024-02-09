@@ -2,7 +2,6 @@ class SessionHelper:
     def __init__(self, app):
         self.app = app
 
-
     def login(self, username, password):
         wd = self.app.wd
         self.app.open_home_page()
@@ -15,9 +14,9 @@ class SessionHelper:
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
     def logout(self):
-        wd = self.app. wd
+        wd = self.app.wd
         wd.find_element_by_link_text("Logout").click()
-        #wd.quit()
+        # wd.quit()
 
     def ensure_logout(self):
         wd = self.app.wd
@@ -30,7 +29,11 @@ class SessionHelper:
 
     def is_logged_in_as(self, username):
         wd = self.app.wd
-        return wd.find_element_by_xpath("//div[@id='top']/form/b").text == '('+username+')'
+        return self.logged_user() == username
+
+    def logged_user(self):
+        wd = self.app.wd
+        return wd.find_element_by_xpath("//div[@id='top']/form/b").text[1:-1]
 
     def ensure_login(self, username, password):
         wd = self.app.wd
@@ -43,5 +46,6 @@ class SessionHelper:
 
     def open_home_page(self):
         wd = self.app.wd
-        if not (wd.current_url.endswith('/addressbook/') and len(wd.find_elements_by_class_name('fdTableSortTrigger')) > 0):
+        if not (wd.current_url.endswith('/addressbook/') and len(
+                wd.find_elements_by_class_name('fdTableSortTrigger')) > 0):
             wd.get("http://localhost/addressbook/addressbook/")
