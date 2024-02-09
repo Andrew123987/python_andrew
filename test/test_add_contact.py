@@ -3,7 +3,7 @@ from model.contact import Contact
 
 def test_add_contact(app):
     old_contacts = app.contact.get_contact_list()
-    contact = Contact(contact_name="Andrew", contact_surname="Suvorov")
+    contact = Contact(firstname="Andrew", lastname="Suvorov")
     app.contact.contact_create(contact)
     assert len(old_contacts) + 1 == app.contact.count_contact()
     new_contacts = app.contact.get_contact_list()
