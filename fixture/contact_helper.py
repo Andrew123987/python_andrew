@@ -9,12 +9,30 @@ class ContactHelper:
 
     def contact_input(self, contact):
         wd = self.app.wd
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys("%s" % contact.firstname)
-        wd.find_element_by_name("lastname").click()
-        wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys("%s" % contact.lastname)
+        wd.find_element_by_name('firstname').click()
+        wd.find_element_by_name('firstname').clear()
+        wd.find_element_by_name('firstname').send_keys("%s" % contact.firstname)
+        wd.find_element_by_name('lastname').click()
+        wd.find_element_by_name('lastname').clear()
+        wd.find_element_by_name('lastname').send_keys("%s" % contact.lastname)
+        wd.find_element_by_name('home').click()
+        wd.find_element_by_name('home').clear()
+        wd.find_element_by_name('home').send_keys("%s" % contact.homephone)
+        wd.find_element_by_name('mobile').click()
+        wd.find_element_by_name('mobile').clear()
+        wd.find_element_by_name('mobile').send_keys("%s" % contact.mobilephone)
+        wd.find_element_by_name('work').click()
+        wd.find_element_by_name('work').clear()
+        wd.find_element_by_name('work').send_keys("%s" % contact. workphone)
+        wd.find_element_by_name('address').click()
+        wd.find_element_by_name('address').clear()
+        wd.find_element_by_name('address').send_keys("%s" % contact.address)
+
+
+
+
+
+
 
     def contact_create(self, contact):
         wd = self.app.wd
@@ -79,9 +97,9 @@ class ContactHelper:
                 all_mailes = cells[4].text.splitlines()
                 self.contact_cache.append(Contact(id=id, firstname=firstname, lastname=lastname, address=address,
                                                   homephone=all_phones[0], mobilephone=all_phones[1],
-                                                  workphone=all_phones[2],
-                                                  email=all_mailes[0], email_2=all_mailes[1],
-                                                  email_3=all_mailes[2]))
+                                                  workphone=all_phones[2]))
+                                                  ##email=all_mailes[0], email_2=all_mailes[1],
+                                                  ##email_3=all_mailes[2]))
         return list(self.contact_cache)
 
     def get_contact_info_from_edit_page(self, index, contact):
@@ -96,7 +114,9 @@ class ContactHelper:
         homephone = wd.find_element_by_name('home').get_attribute('value')
         mobilephone = wd.find_element_by_name('mobile').get_attribute('value')
         workphone = wd.find_element_by_name('work').get_attribute('value')
-        fax = wd.find_element_by_name('fax').get_attribute('value')
         return Contact(firstname=firstname, lastname=lastname, id=id, address=address,
-                       email=email, email_2=email2, email_3=email3,
-                       homephone=homephone, mobilephone=mobilephone, workphone=workphone, fax=fax)
+                       ##email=email, email_2=email2, email_3=email3,
+                       homephone=homephone, mobilephone=mobilephone, workphone=workphone)
+
+
+    #def edit_contact(self, index):
