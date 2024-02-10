@@ -9,14 +9,25 @@ def test_phones_on_home_page(app):
     assert contact_from_home_page.address == clear(contact_from_edit_page.address)
     assert contact_from_home_page.all_phones_from_home_page == merge_phones_like_on_home_page(contact_from_edit_page)
 
-    assert contact_from_home_page.email == clear(contact_from_edit_page.email)
-    assert contact_from_home_page.email_2 == clear(contact_from_edit_page.email_2)
-    assert contact_from_home_page.email_3 == clear(contact_from_edit_page.email_3)
+
+def test_mailes_on_home_page(app):
+    contact_from_home_page = app.contact.get_contact_list()[0]
+    contact_from_edit_page = app.contact.get_contact_info_from_edit_page(index=0)
+    assert contact_from_home_page.all_mailes_from_home_page == merge_mailes_like_on_home_page(contact_from_edit_page)
 
 
 def merge_phones_like_on_home_page(contact):
     return '\n'.join(filter(lambda x: x != '',
-                            map(lambda x: clear(x), filter(lambda x: x is not None, [contact.homephone, contact.mobilephone, contact.workphone]))))
+                            map(lambda x: clear(x), filter(lambda x: x is not None,
+                                                           [contact.homephone, contact.mobilephone,
+                                                            contact.workphone]))))
+
+
+def merge_mailes_like_on_home_page(contact):
+    return '\n'.join(filter(lambda x: x != '',
+                            map(lambda x: clear(x), filter(lambda x: x is not None,
+                                                           [contact.email, contact.email_2,
+                                                            contact.email_3]))))
 
 
 def test_phones_on_view_page(app):
