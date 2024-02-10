@@ -23,16 +23,10 @@ class ContactHelper:
         wd.find_element_by_name('mobile').send_keys("%s" % contact.mobilephone)
         wd.find_element_by_name('work').click()
         wd.find_element_by_name('work').clear()
-        wd.find_element_by_name('work').send_keys("%s" % contact. workphone)
+        wd.find_element_by_name('work').send_keys("%s" % contact.workphone)
         wd.find_element_by_name('address').click()
         wd.find_element_by_name('address').clear()
         wd.find_element_by_name('address').send_keys("%s" % contact.address)
-
-
-
-
-
-
 
     def contact_create(self, contact):
         wd = self.app.wd
@@ -98,13 +92,14 @@ class ContactHelper:
                 self.contact_cache.append(Contact(id=id, firstname=firstname, lastname=lastname, address=address,
                                                   homephone=all_phones[0], mobilephone=all_phones[1],
                                                   workphone=all_phones[2]))
-                                                  ##email=all_mailes[0], email_2=all_mailes[1],
-                                                  ##email_3=all_mailes[2]))
+                ##email=all_mailes[0], email_2=all_mailes[1],
+                ##email_3=all_mailes[2]))
         return list(self.contact_cache)
 
-    def get_contact_info_from_edit_page(self, index, contact):
+    def get_contact_info_from_edit_page(self, index):
         wd = self.app.wd
-        self.contact_update_by_index(index, contact)
+        ##self.contact_update_by_index(index, contact)
+        self.edit_contact(index)
         firstname = wd.find_element_by_name('firstname').get_attribute('value')
         lastname = wd.find_element_by_name('lastname').get_attribute('value')
         address = wd.find_element_by_name('address').get_attribute('value')
@@ -118,5 +113,7 @@ class ContactHelper:
                        ##email=email, email_2=email2, email_3=email3,
                        homephone=homephone, mobilephone=mobilephone, workphone=workphone)
 
-
-    #def edit_contact(self, index):
+    def edit_contact(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
