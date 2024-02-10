@@ -1,3 +1,4 @@
+import re
 import time
 
 from model.contact import Contact
@@ -132,7 +133,26 @@ class ContactHelper:
                        email=email, email_2=email2, email_3=email3,
                        homephone=homephone, mobilephone=mobilephone, workphone=workphone)
 
+
+    def open_contact_view_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        row = wd.find_elements_by_name('entry')[index]
+        cell = row.find_elements_by_tag_name('td')[6]
+        cell.find_element_by_tag_name('a').click()
+
+
     def edit_contact(self, index):
         wd = self.app.wd
         self.app.open_home_page()
         wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
+
+    def get_contact_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_contact_view_by_index(index)
+        text = wd.find_element_by_id('content').text
+        homephone = re.search('H: (.*)', text).group(1)
+        mobilephone = re.search('M: (.*)', text).group(1)
+        workphone = re.search('W: (.*)', text).group(1)
+        return Contact(homephone=homephone, mobilephone=mobilephone, workphone=workphone)
+
