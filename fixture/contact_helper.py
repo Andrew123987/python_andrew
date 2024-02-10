@@ -38,15 +38,6 @@ class ContactHelper:
         wd.find_element_by_name('email3').clear()
         wd.find_element_by_name('email3').send_keys("%s" % contact.email_3)
 
-
-
-
-
-
-
-
-
-
     def contact_create(self, contact):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
@@ -113,7 +104,6 @@ class ContactHelper:
                                                   workphone=all_phones[2],
                                                   email=all_mailes[0], email_2=all_mailes[1], email_3=all_mailes[2]))
 
-
         return list(self.contact_cache)
 
     def get_contact_info_from_edit_page(self, index):
@@ -133,14 +123,12 @@ class ContactHelper:
                        email=email, email_2=email2, email_3=email3,
                        homephone=homephone, mobilephone=mobilephone, workphone=workphone)
 
-
     def open_contact_view_by_index(self, index):
         wd = self.app.wd
         self.app.open_home_page()
         row = wd.find_elements_by_name('entry')[index]
         cell = row.find_elements_by_tag_name('td')[6]
         cell.find_element_by_tag_name('a').click()
-
 
     def edit_contact(self, index):
         wd = self.app.wd
@@ -155,4 +143,3 @@ class ContactHelper:
         mobilephone = re.search('M: (.*)', text).group(1)
         workphone = re.search('W: (.*)', text).group(1)
         return Contact(homephone=homephone, mobilephone=mobilephone, workphone=workphone)
-
