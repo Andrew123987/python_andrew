@@ -27,6 +27,24 @@ class ContactHelper:
         wd.find_element_by_name('address').click()
         wd.find_element_by_name('address').clear()
         wd.find_element_by_name('address').send_keys("%s" % contact.address)
+        wd.find_element_by_name('email').click()
+        wd.find_element_by_name('email').clear()
+        wd.find_element_by_name('email').send_keys("%s" % contact.email)
+        wd.find_element_by_name('email2').click()
+        wd.find_element_by_name('email2').clear()
+        wd.find_element_by_name('email2').send_keys("%s" % contact.email_2)
+        wd.find_element_by_name('email3').click()
+        wd.find_element_by_name('email3').clear()
+        wd.find_element_by_name('email3').send_keys("%s" % contact.email_3)
+
+
+
+
+
+
+
+
+
 
     def contact_create(self, contact):
         wd = self.app.wd
@@ -91,9 +109,10 @@ class ContactHelper:
                 all_mailes = cells[4].text.splitlines()
                 self.contact_cache.append(Contact(id=id, firstname=firstname, lastname=lastname, address=address,
                                                   homephone=all_phones[0], mobilephone=all_phones[1],
-                                                  workphone=all_phones[2]))
-                ##email=all_mailes[0], email_2=all_mailes[1],
-                ##email_3=all_mailes[2]))
+                                                  workphone=all_phones[2],
+                                                  email=all_mailes[0], email_2=all_mailes[1], email_3=all_mailes[2]))
+
+
         return list(self.contact_cache)
 
     def get_contact_info_from_edit_page(self, index):
@@ -110,7 +129,7 @@ class ContactHelper:
         mobilephone = wd.find_element_by_name('mobile').get_attribute('value')
         workphone = wd.find_element_by_name('work').get_attribute('value')
         return Contact(firstname=firstname, lastname=lastname, id=id, address=address,
-                       ##email=email, email_2=email2, email_3=email3,
+                       email=email, email_2=email2, email_3=email3,
                        homephone=homephone, mobilephone=mobilephone, workphone=workphone)
 
     def edit_contact(self, index):
