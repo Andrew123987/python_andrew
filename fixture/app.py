@@ -12,6 +12,7 @@ class App:
         self.contact = ContactHelper(self)
         self.helper = HelperHelper()
         self.base_url = base_url
+        self.browser = browser
         if browser == 'firefox':
             self.wd = webdriver.Firefox()
         elif browser == 'chrome':
