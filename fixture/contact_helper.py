@@ -109,15 +109,15 @@ class ContactHelper:
         wd = self.app.wd
         ##self.contact_update_by_index(index, contact)
         self.edit_contact(index)
-        firstname = wd.find_element_by_name('firstname').get_attribute('value')
-        lastname = wd.find_element_by_name('lastname').get_attribute('value')
-        address = wd.find_element_by_name('address').get_attribute('value')
-        email = wd.find_element_by_name('email').get_attribute('value')
-        email2 = wd.find_element_by_name('email2').get_attribute('value')
-        email3 = wd.find_element_by_name('email3').get_attribute('value')
-        homephone = wd.find_element_by_name('home').get_attribute('value')
-        mobilephone = wd.find_element_by_name('mobile').get_attribute('value')
-        workphone = wd.find_element_by_name('work').get_attribute('value')
+        firstname = wd.find_element_by_name('firstname').get_attribute('value').replace(' ', '')
+        lastname = wd.find_element_by_name('lastname').get_attribute('value').replace(' ', '')
+        address = wd.find_element_by_name('address').get_attribute('value').replace('.', '')
+        email = wd.find_element_by_name('email').get_attribute('value').replace(' ', '')
+        email2 = wd.find_element_by_name('email2').get_attribute('value').replace(' ', '')
+        email3 = wd.find_element_by_name('email3').get_attribute('value').replace(' ', '')
+        homephone = wd.find_element_by_name('home').get_attribute('value').replace(' ', '')
+        mobilephone = wd.find_element_by_name('mobile').get_attribute('value').replace(' ', '')
+        workphone = wd.find_element_by_name('work').get_attribute('value').replace(' ', '')
         return Contact(firstname=firstname, lastname=lastname, id=id, address=address,
                        email=email, email_2=email2, email_3=email3,
                        homephone=homephone, mobilephone=mobilephone, workphone=workphone)
@@ -138,7 +138,7 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contact_view_by_index(index)
         text = wd.find_element_by_id('content').text
-        homephone = re.search('H: (.*)', text).group(1)
-        mobilephone = re.search('M: (.*)', text).group(1)
-        workphone = re.search('W: (.*)', text).group(1)
+        homephone = re.search('H: (.*)', text).group(1).replace(' ', '')
+        mobilephone = re.search('M: (.*)', text).group(1).replace(' ', '')
+        workphone = re.search('W: (.*)', text).group(1).replace(' ', '')
         return Contact(homephone=homephone, mobilephone=mobilephone, workphone=workphone)
