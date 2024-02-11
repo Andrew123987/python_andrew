@@ -6,11 +6,12 @@ from fixture.helper_helper import HelperHelper
 
 
 class App:
-    def __init__(self, browser='firefox'):
+    def __init__(self, browser, base_url):
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
         self.helper = HelperHelper()
+        self.base_url = base_url
         if browser == 'firefox':
             self.wd = webdriver.Firefox()
         elif browser == 'chrome':
@@ -37,7 +38,7 @@ class App:
         wd = self.wd
         if not (wd.current_url.endswith('/addressbook/') and len(
                 wd.find_elements_by_class_name('fdTableSortTrigger')) > 0):
-            wd.get("http://localhost/addressbook/addressbook/")
+            wd.get(self.base_url)
 
     def open_group_page(self):
         wd = self.wd
