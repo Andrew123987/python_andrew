@@ -6,13 +6,14 @@ from fixture.helper_helper import HelperHelper
 
 
 class App:
-    def __init__(self, browser, base_url):
+    def __init__(self, browser, base_url, password):
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
         self.helper = HelperHelper()
         self.base_url = base_url
         self.browser = browser
+        self.password = password
         if browser == 'firefox':
             self.wd = webdriver.Firefox()
         elif browser == 'chrome':
