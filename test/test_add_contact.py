@@ -17,7 +17,7 @@ testdata = [  ##[Contact(firstname='', lastname='', address='', homephone='', mo
             mobilephone=random_string('mobilephone', 10),
             workphone=random_string('workphone', 10), email=random_string('email', 10),
             email_2=random_string('email_2', 10), email_3=random_string('email_3', 10))
-    for i in range(1)
+    for i in range(2)
 
 ]
 
