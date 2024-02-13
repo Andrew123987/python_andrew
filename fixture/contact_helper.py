@@ -98,23 +98,22 @@ class ContactHelper:
                 address = cells[3].text
                 id = cells[0].find_element_by_tag_name('input').get_attribute("value")
                 all_phones = cells[5].text
-                all_mailes = cells[4].text
+                all_mails = cells[4].text
                 self.contact_cache.append(Contact(id=id, firstname=firstname, lastname=lastname, address=address,
                                                   all_phones_from_home_page=all_phones,
-                                                  all_mailes_from_home_page=all_mailes))
+                                                  all_mailes_from_home_page=all_mails))
 
         return list(self.contact_cache)
 
     def get_contact_info_from_edit_page(self, index):
         wd = self.app.wd
-        ##self.contact_update_by_index(index, contact)
         self.edit_contact(index)
-        firstname = wd.find_element_by_name('firstname').get_attribute('value').replace(' ', '')
-        lastname = wd.find_element_by_name('lastname').get_attribute('value').replace(' ', '')
-        address = wd.find_element_by_name('address').get_attribute('value').replace('.', '')
-        email = wd.find_element_by_name('email').get_attribute('value').replace(' ', '')
-        email2 = wd.find_element_by_name('email2').get_attribute('value').replace(' ', '')
-        email3 = wd.find_element_by_name('email3').get_attribute('value').replace(' ', '')
+        firstname = wd.find_element_by_name('firstname').get_attribute('value')
+        lastname = wd.find_element_by_name('lastname').get_attribute('value')
+        address = wd.find_element_by_name('address').get_attribute('value')
+        email = wd.find_element_by_name('email').get_attribute('value')
+        email2 = wd.find_element_by_name('email2').get_attribute('value')
+        email3 = wd.find_element_by_name('email3').get_attribute('value')
         homephone = wd.find_element_by_name('home').get_attribute('value').replace(' ', '')
         mobilephone = wd.find_element_by_name('mobile').get_attribute('value').replace(' ', '')
         workphone = wd.find_element_by_name('work').get_attribute('value').replace(' ', '')

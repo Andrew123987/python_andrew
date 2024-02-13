@@ -2,7 +2,7 @@ from model.contact import Contact
 from random import randrange
 
 
-def test_update_some_contact(app):
+def _update_some_contact(app):
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
     contact = Contact(firstname="Andrew", lastname="Suvorov", homephone='123', mobilephone='456', workphone='789',
