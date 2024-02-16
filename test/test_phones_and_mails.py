@@ -7,7 +7,7 @@ def test_all_contacts_info(app):
     contact_from_view_page = app.contact.get_contact_from_view_page(0)
     assert clear(contact_from_home_page.firstname) == clear(contact_from_edit_page.firstname)
     assert clear(contact_from_home_page.lastname) == clear(contact_from_edit_page.lastname)
-    assert clear(contact_from_home_page.address) == clear(contact_from_edit_page.address)
+    assert contact_from_home_page.address == contact_from_edit_page.address
     assert contact_from_view_page.homephone == contact_from_edit_page.homephone
     assert contact_from_view_page.mobilephone == contact_from_edit_page.mobilephone
     assert contact_from_view_page.workphone == contact_from_edit_page.workphone
