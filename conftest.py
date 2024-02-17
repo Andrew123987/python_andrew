@@ -1,24 +1,23 @@
 from fixture.app import App
 import pytest
+import json
 
 fixture = None
-
+target = None
 
 @pytest.fixture
 def app(request):
     global fixture
+    global target
     browser = request.config.getoption('--browser')
-    base_url = request.config.getoption('--baseUrl')
-    password = request.config.getoption('--password')
-    username = request.config.getoption('--username')
-    if fixture is None:
-
-        fixture = App(browser=browser, base_url=base_url, password=password, username=username)
-    else:
-        if not fixture.is_valid():
-            fixture = App(browser=browser, base_url=base_url, password=password, username=username)
-            fixture.session.open_home_page()
-    fixture.session.ensure_login(username, password)
+    if target is None:
+        with open(request.config.getoption('--target')) as config_file:
+            target = json.load(config_file)
+    # password = request.config.getoption('--password')
+    # username = request.config.getoption('--username')
+    if fixture is None or not fixture.is_valid():
+        fixture = App(browser=browser, base_url=target['base_url'], username=target['username'], password=target['password'])
+    fixture.session.ensure_login(username=target['username'], password=target['password'])
     return fixture
 
 
@@ -34,6 +33,6 @@ def stop(request):
 
 def pytest_addoption(parser):
     parser.addoption('--browser', action='store', default='firefox')
-    parser.addoption('--baseUrl', action='store', default='http://localhost/addressbook/addressbook/')
-    parser.addoption('--username', action='store')
-    parser.addoption('--password', action='store')
+    parser.addoption('--target', action='store', default='target.json')
+#    parser.addoption('--username', action='store')
+#    parser.addoption('--password', action='store')

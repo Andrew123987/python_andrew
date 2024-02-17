@@ -23,7 +23,7 @@ testdata = [  ##[Contact(firstname='', lastname='', address='', homephone='', mo
 
 
 @pytest.mark.parametrize('contact', testdata, ids=[repr(x) for x in testdata])
-def _add_contact(app, contact):
+def test_add_contact(app, contact):
     old_contacts = app.contact.get_contact_list()
     app.contact.contact_create(contact)
     assert len(old_contacts) + 1 == app.contact.count_contact()

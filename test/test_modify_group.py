@@ -1,7 +1,8 @@
 from model.group import Group
 from random import randrange
 
-def _modify_some_group(app):
+
+def test_modify_some_group(app):
     old_groups = app.group.get_group_list()
     index = randrange(len(old_groups))
     group = Group(name="test", header="test", footer="test")
@@ -13,5 +14,3 @@ def _modify_some_group(app):
     assert len(old_groups) == len(new_groups)
     old_groups[index] = group
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
-
-
