@@ -13,8 +13,6 @@ def app(request):
     if target is None:
         with open(request.config.getoption('--target')) as config_file:
             target = json.load(config_file)
-    # password = request.config.getoption('--password')
-    # username = request.config.getoption('--username')
     if fixture is None or not fixture.is_valid():
         fixture = App(browser=browser, base_url=target['base_url'], username=target['username'], password=target['password'])
     fixture.session.ensure_login(username=target['username'], password=target['password'])
@@ -34,5 +32,4 @@ def stop(request):
 def pytest_addoption(parser):
     parser.addoption('--browser', action='store', default='firefox')
     parser.addoption('--target', action='store', default='target.json')
-#    parser.addoption('--username', action='store')
-#    parser.addoption('--password', action='store')
+
