@@ -1,0 +1,32 @@
+[
+  {
+    "py/object": "model.contact.Contact",
+    "firstname": "Andrew1",
+    "lastname": "test1",
+    "id": null,
+    "homephone": "123",
+    "mobilephone": "456",
+    "workphone": "789",
+    "address": "street1",
+    "email": "test1@mail.ru",
+    "email_2": "test2@mail.ru",
+    "email_3": "test3@mail.ru",
+    "all_phones_from_home_page": null,
+    "all_mailes_from_home_page": null
+  },
+  {
+    "py/object": "model.contact.Contact",
+    "firstname": "Andrew2",
+    "lastname": "test2",
+    "id": null,
+    "homephone": "321",
+    "mobilephone": "654",
+    "workphone": "987",
+    "address": "street2",
+    "email": "test11@mail.ru",
+    "email_2": "test22@mail.ru",
+    "email_3": "test3@mail.ru",
+    "all_phones_from_home_page": null,
+    "all_mailes_from_home_page": null
+  }
+]
