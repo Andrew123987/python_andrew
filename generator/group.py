@@ -3,6 +3,8 @@ import random
 import string
 import os.path
 import json
+import jsonpickle
+
 
 def random_string(prefix, maxlen):
     symbols = string.ascii_letters + string.digits + string.punctuation + ' ' * 10
@@ -12,9 +14,16 @@ def random_string(prefix, maxlen):
 testdata = [Group(name='', header='', footer='')] + [
     Group(name=random_string('name', 10), header=random_string('header', 20),
           footer=random_string('footer', 20))
-    for i in range(2)]
-
+    for i in range(2)
+]
 
 file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/groups.json')
+
 with open(file, 'w') as f:
-    f.write(json.dumps(testdata, default=lambda x: x.__dict__, indent=2))
+    # f.write
+    data_json = jsonpickle.encode(testdata, f)
+    f.write(data_json)
+
+            # json.dumps(testdata, default=lambda x: x.__dict__, indent=2))
+
+

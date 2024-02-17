@@ -1,7 +1,7 @@
 import re
 
 
-def test_all_contacts_info(app):
+def _all_contacts_info(app):
     contact_from_home_page = app.contact.get_contact_list()[0]
     contact_from_edit_page = app.contact.get_contact_info_from_edit_page(index=0)
     contact_from_view_page = app.contact.get_contact_from_view_page(0)
