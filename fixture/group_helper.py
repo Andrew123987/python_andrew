@@ -7,7 +7,7 @@ class GroupHelper:
 
     def open_home_page(self):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/addressbook/")
+        wd.get(wd.base_url)
 
     def open_group_page(self):
         wd = self.app.wd

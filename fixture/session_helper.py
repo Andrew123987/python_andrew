@@ -48,4 +48,4 @@ class SessionHelper:
         wd = self.app.wd
         if not (wd.current_url.endswith('/addressbook/') and len(
                 wd.find_elements_by_class_name('fdTableSortTrigger')) > 0):
-            wd.get("http://localhost/addressbook/addressbook/")
+            wd.get(wd.base_url)
