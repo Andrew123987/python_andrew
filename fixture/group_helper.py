@@ -11,7 +11,7 @@ class GroupHelper:
 
     def open_group_page(self):
         wd = self.app.wd
-        wd.get('http://localhost/addressbook/addressbook/group.php')
+        wd.get(self.app.group_page_url)
 
     def group_create(self, group):
         wd = self.app.wd

@@ -1,5 +1,7 @@
 {
   "base_url": "http://localhost/addressbook/addressbook/",
   "username": "admin",
-  "password": "secret"
+  "password": "secret",
+  "group_page_url" : "http://localhost/addressbook/addressbook/group.php",
+  "contact_edit_page" : "http://localhost/addressbook/addressbook/edit.php"
 }

@@ -38,10 +38,10 @@ class ContactHelper:
         wd.find_element_by_name('email3').clear()
         wd.find_element_by_name('email3').send_keys("%s" % contact.email_3)
 
-    def contact_create(self, contact):
+    def contact_create(self, contact, app):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
-        wd.get("http://localhost/addressbook/addressbook/edit.php")
+        wd.get(app.contact_edit_page)
         self.contact_input(contact)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()

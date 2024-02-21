@@ -21,7 +21,7 @@ def app(request):
             target = json.load(f)
     if fixture is None or not fixture.is_valid():
         fixture = App(browser=browser, base_url=target['base_url'], username=target['username'],
-                      password=target['password'])
+                      password=target['password'], group_page_url=target['group_page_url'], contact_edit_page=target['contact_edit_page'])
     fixture.session.ensure_login(username=target['username'], password=target['password'])
     return fixture
 
