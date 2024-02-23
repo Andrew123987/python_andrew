@@ -1,7 +1,17 @@
 {
+  "web" : {
   "base_url": "http://localhost/addressbook/addressbook/",
   "username": "admin",
   "password": "secret",
   "group_page_url" : "http://localhost/addressbook/addressbook/group.php",
   "contact_edit_page" : "http://localhost/addressbook/addressbook/edit.php"
-}
+},
+
+  "db": {
+    "host": "localhost",
+    "name": "addressbook",
+    "user": "root",
+    "password": ""
+  }
+
+  }
