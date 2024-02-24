@@ -165,10 +165,11 @@ class ContactHelper:
         contact = contact
         firstname = contact.firstname.strip()
         lastname = contact.lastname.strip()
+        address = contact.address.strip()
         all_phones = self.merge_phones_like_on_home_page(contact)
         all_emails = self.merge_emails_like_on_home_page(contact)
         return Contact(lastname=lastname, firstname=firstname, id=contact.id,
-                       all_phones_from_home_page=all_phones, address=contact.address,
+                       all_phones_from_home_page=all_phones, address=address,
                        all_mailes_from_home_page=all_emails)
 
     def clear(self, s):
