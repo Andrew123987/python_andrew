@@ -64,6 +64,15 @@ class ContactHelper:
         wd.find_element_by_name("update").click()
         self.contact_cache = None
 
+    def contact_update_by_id(self, id, new_contact_data):
+        wd = self.app.wd
+        self.open_contact_to_edit_by_id(id)
+        self.contact_input(new_contact_data)
+        wd.find_element_by_name("update").click()
+        self.app.open_home_page()
+        self.contact_cache = None
+
+
     def contact_delete(self):
         self.contact_delete_by_index(0)
 
@@ -74,6 +83,25 @@ class ContactHelper:
         wd.find_element_by_xpath('//div[2]/input').click()
         self.app.open_home_page()
         self.contact_cache = None
+
+    def contact_delete_by_id(self, id):
+        wd = self.app.wd
+        self.app.open_home_page()
+        self.select_contact_by_id(id)
+        wd.find_element_by_xpath("//div[@id='content']/form[@name='MainForm']/div[2]/input").click()
+        self.app.open_home_page()
+        self.contact_cache = None
+
+    def open_contact_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[7]
+        cell.find_element_by_tag_name("a").click()
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
 
     def select_contact_by_index(self, index):
         wd = self.app.wd

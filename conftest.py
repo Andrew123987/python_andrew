@@ -45,6 +45,9 @@ def db(request):
     request.addfinalizer(fin)
     return dbfixture
 
+    request.addfinalizer(fin)
+    return dbfixture
+
 
 @pytest.fixture(scope='session', autouse=True)
 def stop(request):
