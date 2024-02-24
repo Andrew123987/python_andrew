@@ -64,15 +64,6 @@ class ContactHelper:
         wd.find_element_by_name("update").click()
         self.contact_cache = None
 
-    def contact_update_by_id(self, id, new_contact_data):
-        wd = self.app.wd
-        self.open_contact_to_edit_by_id(id)
-        self.contact_input(new_contact_data)
-        wd.find_element_by_name("update").click()
-        self.app.open_home_page()
-        self.contact_cache = None
-
-
     def contact_delete(self):
         self.contact_delete_by_index(0)
 
@@ -169,3 +160,25 @@ class ContactHelper:
         mobilephone = re.search('M: (.*)', text).group(1).replace(' ', '')
         workphone = re.search('W: (.*)', text).group(1).replace(' ', '')
         return Contact(homephone=homephone, mobilephone=mobilephone, workphone=workphone)
+
+    def contact_from_home_page(self, contact):
+        contact = contact
+        firstname = contact.firstname.strip()
+        lastname = contact.lastname.strip()
+        all_phones = self.merge_phones_like_on_home_page(contact)
+        all_emails = self.merge_emails_like_on_home_page(contact)
+        return Contact(lastname=lastname, firstname=firstname, id=contact.id,
+                       all_phones_from_home_page=all_phones, address=contact.address,
+                       all_mailes_from_home_page=all_emails)
+
+    def clear(self, s):
+        return re.sub("[() -]", "", s)
+
+    def merge_emails_like_on_home_page(self, contact):
+        return '\n'.join(filter(lambda x: x != "" and x is not None, [contact.email, contact.email_2, contact.email_3]))
+
+    def merge_phones_like_on_home_page(self, contact):
+        return "\n".join(filter(lambda x: x != "",
+                                map(lambda x: self.clear(x),
+                                    filter(lambda x: x is not None,
+                                           [contact.homephone, contact.mobilephone, contact.workphone]))))

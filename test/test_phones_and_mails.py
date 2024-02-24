@@ -1,5 +1,7 @@
 import re
 
+from model.contact import Contact
+
 
 def _all_contacts_info(app):
     contact_from_home_page = app.contact.get_contact_list()[0]
@@ -15,6 +17,12 @@ def _all_contacts_info(app):
     assert contact_from_home_page.all_mailes_from_home_page == merge_mails_like_on_home_page(contact_from_edit_page)
 
 
+def test_contact_info_from_home_page_vs_db(app, db):
+    home_contacts = sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
+    db_contacts = sorted(map(app.contact.contact_from_home_page, db.get_contact_list()), key=Contact.id_or_max)
+    assert home_contacts == db_contacts
+
+
 def merge_phones_like_on_home_page(contact):
     return '\n'.join(filter(lambda x: x != '',
                             map(lambda x: clear(x), filter(lambda x: x is not None,
@@ -25,8 +33,8 @@ def merge_phones_like_on_home_page(contact):
 def merge_mails_like_on_home_page(contact):
     return '\n'.join(filter(lambda x: x != '',
                             map(lambda x: x, filter(lambda x: x is not None,
-                                                          [contact.email, contact.email_2,
-                                                           contact.email_3]))))
+                                                    [contact.email, contact.email_2,
+                                                     contact.email_3]))))
 
 
 def clear(s):
