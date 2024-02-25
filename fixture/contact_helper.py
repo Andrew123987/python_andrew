@@ -184,13 +184,13 @@ class ContactHelper:
                                     filter(lambda x: x is not None,
                                            [contact.homephone, contact.mobilephone, contact.workphone]))))
 
-    def filtration_group_521(self):
+    def filtration_group(self):
         wd = self.app.wd
         select = wd.find_element_by_name('group')
         option = select.find_element_by_css_selector("[value='521']")
         option.click()
 
-    def remove_contact_from_group_521(self, db):
+    def remove_contact_from_group(self, db):
         wd = self.app.wd
         wd.get('http://localhost/addressbook/addressbook/')
         select = wd.find_element_by_name('group')
@@ -201,7 +201,7 @@ class ContactHelper:
         wd.find_element_by_name('remove').click()
         return contacts_in_group_old
 
-    def add_contact_to_group_521(self, index):
+    def add_contact_to_group(self, index):
         wd = self.app.wd
         wd.get('http://localhost/addressbook/addressbook/')
         self.app.contact.select_contact_by_index(index)

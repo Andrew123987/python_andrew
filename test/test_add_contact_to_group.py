@@ -2,23 +2,17 @@ from random import randrange
 from model.contact import Contact
 
 
-def _add_contact_to_group(app, db):
+def test_add_contact_to_group(app, db):
     old_contacts = db.get_contact_list()
     index = randrange(len(old_contacts))
     contact = Contact(firstname="Andrew")
     if app.contact.count_contact() == 0:
         app.contact.contact_create(contact)
-    app.contact.select_contact_by_index(index)
-    select = app.wd.find_element_by_name("to_group")
-    option = select.find_element_by_css_selector("[value='521']")
-    option.click()
-    app.wd.find_element_by_name("add").click()
 
-    app.open_home_page()
-    select = app.wd.find_element_by_name('group')
-    option = select.find_element_by_css_selector("[value='521']")
-    option.click()
-    new_contacts = db.get_contact_list()
-    assert len(new_contacts) > 0
+    contacts_in_group_before = db.get_contact_in_group()
+    app.contact.add_contact_to_group(index)
+
+    contacts_in_group_after = db.get_contact_in_group()
+    assert len(contacts_in_group_before) < len(contacts_in_group_after)
 
 
