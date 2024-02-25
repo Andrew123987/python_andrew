@@ -23,8 +23,8 @@ class Contact:
                                                   self.homephone, self.mobilephone, self.workphone,
                                                   self.email, self.email_2, self.email_3)
 
-    ##def __eq__(self, other):
-    ##    return self.firstname == other.firstname and self.lastname == other.lastname
+    def __eq__(self, other):
+        return self.firstname == other.firstname and self.lastname == other.lastname
 
     def id_or_max(self):
         if self.id:
