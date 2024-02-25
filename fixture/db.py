@@ -39,10 +39,10 @@ class DbFixture:
         list = []
         cursor = self.connection.cursor()
         try:
-            cursor.execute("select id, firstname, lastname, address from address_in_groups where group_id = 521")
+            cursor.execute("select id from address_in_groups where group_id = 521")
             for row in cursor:
-                (id, firstname, lastname, address) = row
-                list.append(Contact(id=str(id), firstname=firstname, lastname=lastname, address=address))
+                (id) = row
+                list.append(Contact(id=str(id)))
         finally:
                 cursor.close()
         return list
