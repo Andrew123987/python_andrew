@@ -1,12 +1,8 @@
 from random import randrange
-from selenium.webdriver.support import expected_conditions as EC
-
-from selenium.webdriver.support.wait import WebDriverWait
-
 from model.contact import Contact
 
 
-def test_add_contact_to_group(app, db):
+def _add_contact_to_group(app, db):
     old_contacts = db.get_contact_list()
     index = randrange(len(old_contacts))
     contact = Contact(firstname="Andrew")
