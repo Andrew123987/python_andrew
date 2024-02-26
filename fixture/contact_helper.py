@@ -211,3 +211,25 @@ class ContactHelper:
         option = select.find_element_by_css_selector("[value='521']")
         option.click()
         wd.find_element_by_name("add").click()
+
+    def update_contact_by_id(self, id, new_contact_data):
+        wd = self.app.wd
+        self.open_contact_to_edit_by_id(id)
+        self.contact_input(new_contact_data)
+        wd.find_element_by_name("update").click()
+        self.app.open_home_page()
+        self.contact_cache = None
+
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        self.app.open_home_page()
+        self.select_contact_by_id(id)
+        wd.find_element_by_xpath("//div[@id='content']/form[@name='MainForm']/div[2]/input").click()
+        # wd.switch_to_alert().accept()
+        self.app.open_home_page()
+        self.contact_cache = None
+
+    def open_contact_to_edit_by_id(self, id):
+        wd = self.app.wd
+        self.app.open_home_page()
+        wd.find_element_by_css_selector('a[href="edit.php?id=%s"]' % id).click()
