@@ -13,7 +13,7 @@ def test_delete_contact_from_group(app, db):
     if len(app.wd.find_elements_by_name('selected[]')) == 0:
         app.contact.add_contact_to_group(index)
 
-    contacts_in_group_before = app.contact.remove_contact_from_group(db)
+    contacts_in_group_before = app.contact.remove_contact_from_group(db, app)
     contacts_in_group_after = db.get_contact_in_group()
     assert len(contacts_in_group_before) > len(contacts_in_group_after)
 

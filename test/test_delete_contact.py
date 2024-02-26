@@ -2,7 +2,7 @@ from model.contact import Contact
 import random
 
 
-def _delete_some_contact(app, db, check_ui):
+def test_delete_some_contact(app, db, check_ui):
     old_contacts = db.get_contact_list()
     if app.contact.count_contact() == 0:
         app.contact.contact_create(

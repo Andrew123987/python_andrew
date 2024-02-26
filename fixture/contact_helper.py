@@ -190,9 +190,10 @@ class ContactHelper:
         option = select.find_element_by_css_selector("[value='521']")
         option.click()
 
-    def remove_contact_from_group(self, db):
+    def remove_contact_from_group(self, db, app):
         wd = self.app.wd
-        wd.get('http://localhost/addressbook/addressbook/')
+        app.open_home_page()
+        # wd.get('http://localhost/addressbook/addressbook/')
         select = wd.find_element_by_name('group')
         option = select.find_element_by_css_selector("[value='521']")
         option.click()
@@ -201,9 +202,10 @@ class ContactHelper:
         wd.find_element_by_name('remove').click()
         return contacts_in_group_old
 
-    def add_contact_to_group(self, index):
+    def add_contact_to_group(self, index, app):
         wd = self.app.wd
-        wd.get('http://localhost/addressbook/addressbook/')
+        app.open_home_page()
+        # wd.get('http://localhost/addressbook/addressbook/')
         self.app.contact.select_contact_by_index(index)
         select = wd.find_element_by_name("to_group")
         option = select.find_element_by_css_selector("[value='521']")
