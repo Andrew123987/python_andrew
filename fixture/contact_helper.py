@@ -205,7 +205,6 @@ class ContactHelper:
     def add_contact_to_group(self, index, app):
         wd = self.app.wd
         app.open_home_page()
-        # wd.get('http://localhost/addressbook/addressbook/')
         self.app.contact.select_contact_by_index(index)
         select = wd.find_element_by_name("to_group")
         option = select.find_element_by_css_selector("[value='521']")
@@ -225,7 +224,6 @@ class ContactHelper:
         self.app.open_home_page()
         self.select_contact_by_id(id)
         wd.find_element_by_xpath("//div[@id='content']/form[@name='MainForm']/div[2]/input").click()
-        # wd.switch_to_alert().accept()
         self.app.open_home_page()
         self.contact_cache = None
 
