@@ -24,7 +24,7 @@ class Contact:
                                                   self.email, self.email_2, self.email_3)
 
     def __eq__(self, other):
-        return self.firstname == other.firstname and self.lastname == other.lastname
+        return self.firstname == other.firstname and self.lastname == other.lastname and self.address == other.address
 
     def id_or_max(self):
         if self.id:

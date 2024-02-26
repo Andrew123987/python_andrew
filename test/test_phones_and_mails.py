@@ -17,11 +17,17 @@ def test_all_contacts_info(app):
 
 
 def test_contact_info_from_home_page_vs_db(app, db):
+    #for db_contact in db.get_contact_list():
+    #    phones = merge_phones_like_on_home_page(db_contact)
     home_contacts = sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
     db_contacts = sorted(map(app.contact.contact_from_home_page, db.get_contact_list()), key=Contact.id_or_max)
-    assert home_contacts == db_contacts
-    assert app.contact.get_contact_list()[0].all_phones_from_home_page == merge_phones_like_on_home_page(db.get_contact_list)
-    assert db.get_contact_list().all_mailes_from_home_page == merge_mails_like_on_home_page(db.get_contact_list)
+    for i in range(len(home_contacts)):
+        assert home_contacts[i] == db_contacts[i]
+        assert home_contacts[i].all_phones_from_home_page == merge_phones_like_on_home_page(db_contacts[i])
+        assert home_contacts[i].all_mailes_from_home_page == merge_mails_like_on_home_page(db_contacts[i])
+
+
+
 
 
 def merge_phones_like_on_home_page(contact):
