@@ -201,14 +201,14 @@ class ContactHelper:
         wd.find_element_by_name('remove').click()
         return contacts_in_group_old
 
-    def add_contact_to_group(self, group, app):
+    def add_contact_to_group(self, app):
         wd = self.app.wd
         app.open_home_page()
         wd.find_element_by_name('selected[]').click()
         select = wd.find_element_by_name("to_group")
-        option = select.find_element_by_css_selector("[value='%s']" % group.id)
-        option.click()
+        select.click()
         wd.find_element_by_name("add").click()
+        app.open_home_page()
 
     def update_contact_by_id(self, id, new_contact_data):
         wd = self.app.wd
