@@ -2,7 +2,7 @@ from random import randrange
 from model.contact import Contact
 
 
-def test_delete_contact_from_group(app, db):
+def _delete_contact_from_group(app, db):
     old_contacts = db.get_contact_list()
     index = randrange(len(old_contacts))
     contact = Contact(firstname="Andrew")

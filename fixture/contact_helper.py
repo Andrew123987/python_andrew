@@ -90,9 +90,9 @@ class ContactHelper:
         cell = row.find_elements_by_tag_name("td")[7]
         cell.find_element_by_tag_name("a").click()
 
-    def select_contact_by_id(self, id):
+    def select_contact_by_id(self, contact):
         wd = self.app.wd
-        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+        wd.find_element_by_css_selector("input[value='%s']" % contact.id).click()
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
@@ -201,12 +201,12 @@ class ContactHelper:
         wd.find_element_by_name('remove').click()
         return contacts_in_group_old
 
-    def add_contact_to_group(self, id):
+    def add_contact_to_group(self, group, app):
         wd = self.app.wd
-        self.app.open_home_page()
-        self.select_contact_by_id(id)
+        app.open_home_page()
+        wd.find_element_by_name('selected[]').click()
         select = wd.find_element_by_name("to_group")
-        option = select.find_element_by_css_selector("[value='%s']" % id)
+        option = select.find_element_by_css_selector("[value='%s']" % group.id)
         option.click()
         wd.find_element_by_name("add").click()
 
