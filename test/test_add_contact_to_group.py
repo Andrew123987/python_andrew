@@ -2,14 +2,10 @@ from model.contact import Contact
 import uuid
 
 def test_add_contact_to_group(app, db):
-    wd = app.wd
     contacts_in_group_before = db.get_contact_in_group()
-
-    if app.contact.count_contact() > 0:
-        app.open_home_page()
-        wd.find_element_by_xpath('//input[2]').click()
-        wd.find_element_by_xpath('//div[2]/input').click()
-
+    # добавил и применил новый метод в этом и ещё паре других тестов, так как решил пересмотреть подход к тестам,
+    # исходя из реального опыта на работе.
+    app.contact.delete_all_contacts()
 
     a = str(uuid.uuid4())
     contact = Contact(firstname="Andrew" + a, lastname="Suvorov" + a, address="street" + a, workphone=a, mobilephone=a, homephone=a,
@@ -19,3 +15,4 @@ def test_add_contact_to_group(app, db):
 
     contacts_in_group_after = db.get_contact_in_group()
     assert len(contacts_in_group_before) < len(contacts_in_group_after)
+

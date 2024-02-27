@@ -230,3 +230,10 @@ class ContactHelper:
         wd = self.app.wd
         self.app.open_home_page()
         wd.find_element_by_css_selector('a[href="edit.php?id=%s"]' % id).click()
+
+    def delete_all_contacts(self):
+        app = self.app
+        if self.app.contact.count_contact() > 0:
+            app.open_home_page()
+            app.wd.find_element_by_xpath('//input[2]').click()
+            app.wd.find_element_by_xpath('//div[2]/input').click()
