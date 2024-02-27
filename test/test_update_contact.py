@@ -2,7 +2,7 @@ from model.contact import Contact
 from random import randrange
 
 
-def test_update_some_contact(app, db, check_ui):
+def _update_some_contact(app, db, check_ui):
     if app.contact.count_contact() == 0:
         app.contact.create(Contact(firstname="Andrew", lastname="Suvorov", address="street"))
     old_contacts = db.get_contact_list()

@@ -40,7 +40,7 @@ class DbFixture:
         list = []
         cursor = self.connection.cursor()
         try:
-            cursor.execute("select id from address_in_groups where group_id = 521")
+            cursor.execute("select id from address_in_groups")
             for row in cursor:
                 (id) = row
                 list.append(Contact(id=str(id)))

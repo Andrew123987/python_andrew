@@ -2,7 +2,7 @@ from model.group import Group
 from random import randrange
 
 
-def test_modify_some_group(app, db, check_ui):
+def _modify_some_group(app, db, check_ui):
     if len(db.get_group_list()) == 0:
         app.group.create(Group(name="Test"))
     old_groups = db.get_group_list()

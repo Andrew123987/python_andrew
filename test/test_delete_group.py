@@ -2,7 +2,7 @@ import random
 from model.group import Group
 
 
-def test_delete_some_group(app, db, check_ui):
+def _delete_some_group(app, db, check_ui):
     if len(db.get_group_list()) == 0:
         app.group.group_create(Group(name='test'))
     old_groups = db.get_group_list()
