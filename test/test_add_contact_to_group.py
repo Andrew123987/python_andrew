@@ -2,7 +2,7 @@ from model.contact import Contact
 import uuid
 
 
-def _add_contact_to_group(app, db):
+def test_add_contact_to_group(app, db):
     contacts_in_group_before = db.get_contact_in_group()
     # применил новый метод, так как пересмотрел подход к тестам, исходя из реального рабочего опыта
     app.contact.delete_all_contacts()
