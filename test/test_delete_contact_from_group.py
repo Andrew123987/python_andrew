@@ -1,23 +1,18 @@
-from random import randrange
+import uuid
 from model.contact import Contact
 
 
-def _delete_contact_from_group(app, db):
-    old_contacts = db.get_contact_list()
-    index = randrange(len(old_contacts))
-    contact = Contact(firstname="Andrew")
-    if app.contact.count_contact() == 0:
-        app.contact.contact_create(contact)
+def test_delete_contact_from_group(app, db):
+    a = str(uuid.uuid4())
+    contact = Contact(firstname="Andrew" + a, lastname="Suvorov" + a, address="street" + a, workphone=a, mobilephone=a,
+                      homephone=a,
+                      email=a + "@mail.ru", email_2=a + "@mail.ru", email_3=a + "@mail.ru")
 
-    app.contact.filtration_group()
-    if len(app.wd.find_elements_by_name('selected[]')) == 0:
-        app.contact.add_contact_to_group(index, app)
-
-    contacts_in_group_before = app.contact.remove_contact_from_group(db, app)
+    # применил новый метод, так как пересмотрел подход к тестам, исходя из реального рабочего опыта
+    app.contact.delete_all_contacts()
+    app.contact.contact_create(contact, app)
+    app.contact.add_contact_to_group(app)
+    contacts_in_group_before = db.get_contact_in_group()
+    app.contact.remove_contact_from_group(app)
     contacts_in_group_after = db.get_contact_in_group()
     assert len(contacts_in_group_before) > len(contacts_in_group_after)
-
-
-
-
-
